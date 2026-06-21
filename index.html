@@ -6,8 +6,7 @@
   <title>My Portfolio</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="output.css"/>
-
+  <link rel="stylesheet" href="src/css/output.css"/>
   <style>
     * { font-family: 'Poppins', sans-serif; }
     html { scroll-behavior: smooth; }
@@ -36,6 +35,18 @@
       0%,100%{opacity:1;}
       50%{opacity:0;}
     }
+
+    .card figure{
+      aspect-ratio: 20/16;
+    }
+
+    .project-card { cursor: pointer; }
+
+    .input-error-msg {
+      display: none;
+      text-align: left;
+      font-size: 0.8rem;
+    }
   </style>
 </head>
 <body>
@@ -53,7 +64,17 @@
         <li><a href="#contact" class="rounded-lg">Contact</a></li>
       </ul>
     </div>
-    <div class="navbar-end">
+    <div class="navbar-end gap-2">
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-sm gap-1">
+          <i class="fa-solid fa-palette"></i>
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-50 w-40 p-2 shadow-xl">
+          <li><a onclick="setTheme('dark')">Dark</a></li>
+          <li><a onclick="setTheme('light')">Light</a></li>
+        </ul>
+      </div>
       <a href="#contact" class="btn btn-primary btn-sm">Hire Me</a>
     </div>
   </div>
@@ -63,8 +84,8 @@
     <div class="hero-content text-center fade-in">
       <div class="max-w-2xl">
         <div class="avatar mb-6">
-          <div class="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src="images/pfp.jpg" alt="avatar"/>
+          <div class="w-48 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <img src="public/images/pfp.jpg" alt="avatar"/>
           </div>
         </div>
         <p class="text-primary font-semibold mb-2">Hello, I'm</p>
@@ -105,11 +126,11 @@
             <span>Physics & Computer Science Student</span>
           </div>
           <div class="flex items-center gap-3">
-            <i class="fa-solid fa-briefcase text-primary"></i> 
+            <i class="fa-solid fa-briefcase text-primary"></i>
             <span>Open to Opportunities</span>
           </div>
           <div class="flex items-center gap-3">
-            <i class="fa-solid fa-globe text-primary"></i> 
+            <i class="fa-solid fa-globe text-primary"></i>
             <span>Arabic & English Speaker</span>
           </div>
         </div>
@@ -229,12 +250,14 @@
   <!-- PROJECTS -->
   <section class="py-20 px-6 bg-base-100" id="projects">
     <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-12">My <span class="text-primary">Projects</span></h2>
+      <h2 class="text-3xl font-bold text-center mb-2">My <span class="text-primary">Projects</span></h2>
+      <p class="text-center text-base-content/60 mb-12 text-sm">Click any project to see more details</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <div class="card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300">
-          <figure class="bg-primary/10 p-8">
-            <i class="fa-solid fa-industry text-6xl text-primary"></i>
+        <div class="card project-card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300"
+             onclick="openProjectModal('mccld')">
+          <figure class="bg-primary/10 h-full p-8">
+            <img src="https://www.mccld.sa/website/assets/img/footerLogo.png" class="w-full object-cover" alt="">
           </figure>
 
           <div class="card-body">
@@ -253,9 +276,10 @@
           </div>
         </div>
 
-        <div class="card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300">
-          <figure class="bg-secondary/10 p-8">
-            <i class="fa-solid fa-cart-shopping text-6xl text-secondary"></i>
+        <div class="card project-card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300"
+             onclick="openProjectModal('elegance')">
+          <figure class="bg-secondary/10 h-full p-8">
+            <img src="https://elegance-stage.webenia.org/public/storage/images/logo/2UIBxtAsppYe8Z4uM2wGTRCCvO5AG4izYvV0VJDT.png" class="w-full object-cover" alt="">
           </figure>
 
           <div class="card-body">
@@ -275,9 +299,10 @@
           </div>
         </div>
 
-        <div class="card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300">
-          <figure class="bg-accent/10 p-8">
-            <i class="fa-solid fa-building text-6xl text-accent"></i>
+        <div class="card project-card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300"
+             onclick="openProjectModal('liwa')">
+          <figure class="bg-accent/10 h-full p-8">
+            <img src="https://static.wixstatic.com/media/2276de_51de509e830a47c2b3345b8be6bbcdb6~mv2.png/v1/fill/w_596,h_222,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Liwa_Oasis_Logo-removebg-preview.png" class="w-full object-contain" alt="">
           </figure>
 
           <div class="card-body">
@@ -296,8 +321,9 @@
           </div>
         </div>
 
-        <div class="card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300">
-          <figure class="bg-success/10 p-8">
+        <div class="card project-card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300"
+             onclick="openProjectModal('otp')">
+          <figure class="bg-warning h-full p-8">
             <i class="fa-solid fa-shield-halved text-6xl text-success"></i>
           </figure>
 
@@ -317,9 +343,10 @@
           </div>
         </div>
 
-        <div class="card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300">
-          <figure class="bg-warning/10 p-8">
-            <i class="fa-solid fa-globe text-6xl text-warning"></i>
+        <div class="card project-card bg-base-200 shadow-xl hover:-translate-y-2 transition-transform duration-300"
+             onclick="openProjectModal('webenia')">
+          <figure class="bg-accent/10 h-full p-8">
+            <img src="https://webenia.com/assets/images/black-logo.png" class="w-full object-contain" alt="">
           </figure>
 
           <div class="card-body">
@@ -362,13 +389,64 @@
 
       <div class="card bg-base-100 shadow-xl">
         <div class="card-body">
-          <input type="text" placeholder="Your Name" class="input input-bordered w-full mb-3" id="nameInput"/>
-          <input type="email" placeholder="Your Email" class="input input-bordered w-full mb-3" id="emailInput"/>
-          <textarea class="textarea textarea-bordered w-full mb-3" placeholder="Your Message" rows="4" id="messageInput"></textarea>
-          <button class="btn btn-primary w-full">Send Message</button>
+          <form id="contactForm" novalidate>
+            <div class="text-left mb-3">
+              <input type="text" placeholder="Your Name" class="input input-bordered w-full" id="nameInput"/>
+              <p class="input-error-msg text-error mt-1" id="nameError">Name is required (min 2 characters).</p>
+            </div>
+
+            <div class="text-left mb-3">
+              <input type="email" placeholder="Your Email" class="input input-bordered w-full" id="emailInput"/>
+              <p class="input-error-msg text-error mt-1" id="emailError">Please enter a valid email address.</p>
+            </div>
+
+            <div class="text-left mb-3">
+              <textarea class="textarea textarea-bordered w-full" placeholder="Your Message" rows="4" id="messageInput"></textarea>
+              <p class="input-error-msg text-error mt-1" id="messageError">Message must be at least 10 characters.</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full">Send Message</button>
+          </form>
         </div>
       </div>
     </div>
   </section>
+
+  <footer class="footer footer-center p-6 bg-base-100 text-base-content border-t border-base-300">
+    <p>Made with care by <span class="text-primary font-semibold">Mohamed Yasser</span> - Codveda Internship 2026</p>
+  </footer>
+
+  <!-- MODAL: Project Details -->
+  <dialog id="projectModal" class="modal">
+    <div class="modal-box max-w-2xl">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">X</button>
+      </form>
+      <div class="flex items-center gap-4 mb-4">
+        <div id="modalIcon" class="text-4xl"></div>
+        <h3 id="modalTitle" class="font-bold text-2xl"></h3>
+      </div>
+      <p id="modalDesc" class="py-2 text-base-content/80 leading-relaxed"></p>
+      <div id="modalTech" class="flex flex-wrap gap-2 mt-3"></div>
+      <div class="modal-action">
+        <a id="modalLink" href="#" target="_blank" class="btn btn-primary">View Project</a>
+        <form method="dialog">
+          <button class="btn btn-outline">Close</button>
+        </form>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
+
+  <!-- TOAST -->
+  <div class="toast toast-top toast-center z-50" id="toast" style="display:none">
+    <div class="alert" id="toastAlert">
+      <span id="toastMsg"></span>
+    </div>
+  </div>
+
+  <script src="src/scripts/scripts.js"></script>
 </body>
 </html>
